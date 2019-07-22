@@ -3,8 +3,12 @@ vendedor, nome da empresa, nome do contato, e-mail, telefone, data de contato e
 data de validade. (RN01, RN02) -->
 <template>
   <div>
-    <button @click="fill">Test</button>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+      <b-form-group>
+        <b-button type="submit" variant="primary">Salvar</b-button>
+        <b-button type="reset" variant="danger">Cancelar</b-button>
+      </b-form-group>
+
       <b-form-group id="input-group-1" label="Nome do vendedor" label-for="input-1">
         <b-form-input id="input-1" v-model="contact.seller_name" required autofocus></b-form-input>
       </b-form-group>
@@ -32,9 +36,6 @@ data de validade. (RN01, RN02) -->
       <b-form-group id="input-group-7" label="Data de validade" label-for="input-7">
         <b-form-input id="input-7" v-model="contact.expiration_date" type="date"></b-form-input>
       </b-form-group>
-
-      <b-button type="submit" variant="primary">Salvar</b-button>
-      <b-button type="reset" variant="danger">Cancelar</b-button>
     </b-form>
   </div>
 </template>
@@ -60,15 +61,6 @@ export default {
     }
   },
   methods: {
-    fill() {
-      this.contact = {
-        seller_name: "Abc",
-        contact_name: "Joao silav",
-        company: "abccompany",
-        email: "abc@mail",
-        phone: "123123123123"
-      };
-    },
     async onSubmit(evt) {
       evt.preventDefault();
       await this.$store.dispatch("contacts/save", this.contact);

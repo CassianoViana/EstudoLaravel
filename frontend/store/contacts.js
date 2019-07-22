@@ -34,7 +34,6 @@ export const getters = {
 
 export const actions = {
   async save({ commit, dispatch }, contact) {
-    let method = !contact.id ? "$put" : "$post";
     if (!contact.id) {
       await this.$axios.$post("/api/contacts", contact);
     } else {
@@ -51,10 +50,10 @@ export const actions = {
     dispatch("listContacts");
   },
   async getContactById({ state }, id) {
-    return state.contacts.filter(contact => contact.id == id)[0];
+    return this.$axios.$get(`/api/contacts/${id||''}`);
   },
   async loadContact({ commit, dispatch }, id) {
-    let contact = await dispatch("getContactById", id);
+    let contact = await dispatch("getContactById", id)[0];
     if (!contact) {
       contact = {
         seller_name: "",

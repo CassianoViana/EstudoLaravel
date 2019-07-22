@@ -1,12 +1,8 @@
 <template>
   <div>
-    <b-row>
-      <b-col>
-        <nuxt-link to="cadastro" append>
-          <b-btn>Novo</b-btn>
-        </nuxt-link>
-      </b-col>
-    </b-row>
+    <nuxt-link to="cadastro" append>
+      <b-btn>Novo</b-btn>
+    </nuxt-link>
     <b-row>
       <b-col>
         <b-table :fields="fields" :items="contactsTableItems" show-empty>
@@ -29,7 +25,7 @@
 export default {
   async fetch({ store, error }) {
     try {
-      await store.dispatch('contacts/listContacts');
+      await store.dispatch("contacts/listContacts");
     } catch (e) {
       error(e);
     }
@@ -37,6 +33,7 @@ export default {
   asyncData() {
     return {
       fields: [
+        "vendedor",
         "contato",
         "empresa",
         "telefone",
@@ -53,6 +50,7 @@ export default {
     contactsTableItems() {
       return this.contacts.map(contact => ({
         id: contact.id,
+        vendedor: contact.seller_name,
         empresa: contact.company,
         contato: contact.contact_name,
         telefone: contact.phone,
@@ -63,7 +61,6 @@ export default {
   },
   methods: {
     confirmRemove({ id, contato }) {
-      console.log(id);
       this.$bvModal
         .msgBoxConfirm(`O contato ${contato} será removido.`, {
           title: "Remover o contato?",
