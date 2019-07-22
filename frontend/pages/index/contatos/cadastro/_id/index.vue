@@ -62,21 +62,17 @@ export default {
   methods: {
     fill() {
       this.contact = {
-        seller: {
-          name: "Abc",
-          company: "abccompany"
-        },
-        contact: {
-          name: "Joao silav",
-          email: "abc@mail",
-          phone: "123123123123"
-        }
+        seller_name: "Abc",
+        contact_name: "Joao silav",
+        company: "abccompany",
+        email: "abc@mail",
+        phone: "123123123123"
       };
     },
     async onSubmit(evt) {
       evt.preventDefault();
       await this.$store.dispatch("contacts/save", this.contact);
-      this.$toast.success('Sucesso', 'O contato foi salvo');
+      this.$toast.success("Sucesso", "O contato foi salvo");
       this.$router.back();
     },
     onReset(evt) {

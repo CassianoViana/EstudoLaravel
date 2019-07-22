@@ -37,8 +37,8 @@ export default {
   asyncData() {
     return {
       fields: [
-        "empresa",
         "contato",
+        "empresa",
         "telefone",
         "email",
         "validade",

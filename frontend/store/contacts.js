@@ -34,21 +34,21 @@ export const getters = {
 
 export const actions = {
   async save({ commit, dispatch }, contact) {
-    if (!!contact.id) {
-      let oldContact = await dispatch("getContactById", contact.id);
-      commit("replace", oldContact, contact);
-    } else {
+    let method = !contact.id ? "$put" : "$post";
+    if (!contact.id) {
       await this.$axios.$post("/api/contacts", contact);
-      dispatch("listContacts");
+    } else {
+      await this.$axios.$put(`/api/contacts/${contact.id}`, contact);
     }
+    dispatch("listContacts");
   },
   async listContacts({ commit, dispatch }) {
-    let response = await this.$axios.$get("/api/contacts");
-    commit("setContacts", response.data);
+    let contacts = await this.$axios.$get("/api/contacts");
+    commit("setContacts", contacts);
   },
   async remove({ commit, dispatch }, id) {
-    let contact = await dispatch("getContactById", id);
-    commit("remove", contact);
+    let contact = await this.$axios.$delete("/api/contacts/" + id);
+    dispatch("listContacts");
   },
   async getContactById({ state }, id) {
     return state.contacts.filter(contact => contact.id == id)[0];

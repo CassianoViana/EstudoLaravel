@@ -14,10 +14,9 @@ use \App\Contact;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::get('contacts', function(){
-    return Contact::all();
-});
+Route::apiResource('contacts', 'ContactController');
+
