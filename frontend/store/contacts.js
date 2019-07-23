@@ -50,7 +50,11 @@ export const actions = {
     dispatch("listContacts");
   },
   async getContactById({ state }, id) {
-    return this.$axios.$get(`/api/contacts/${id||''}`);
+    if(id){
+      return this.$axios.$get(`/api/contacts/${id}`);
+    }else{
+      return {};
+    }
   },
   async loadContact({ commit, dispatch }, id) {
     let contact = await dispatch("getContactById", id);

@@ -36,8 +36,6 @@ data de validade. (RN01, RN02) -->
       <b-form-group id="input-group-7" label="Data de validade" label-for="input-7">
         <b-form-input id="input-7" v-model="contact.expiration_date" type="date"></b-form-input>
       </b-form-group>
-      {{contact.contact_date}}
-      {{contact.expiration_date}}
     </b-form>
   </div>
 </template>
@@ -71,7 +69,6 @@ export default {
         this.$router.back();
       } catch (e) {
         this.$toast.error("Oops", "Ocorreu uma falha ao salvar. Verifique o formulário.");
-        throw e;
       }
     },
     onReset(evt) {

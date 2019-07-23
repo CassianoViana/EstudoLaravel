@@ -61,6 +61,7 @@ export default {
   },
   methods: {
     confirmRemove({ id, contato }) {
+      debugger
       this.$bvModal
         .msgBoxConfirm(`O contato ${contato} será removido.`, {
           title: "Remover o contato?",
@@ -77,7 +78,7 @@ export default {
           this.$store.dispatch("contacts/remove", id);
         })
         .catch(err => {
-          // An error occurred
+          throw err;
         });
     }
   }
