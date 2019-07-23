@@ -3,6 +3,7 @@ Projeto de estudo com lista de contatos
 ## Pré-requisitos
 - composer
 - npm
+- Base de dados postgres (usuário postgres, senha root, banco seller_contacts)
 ## Rodar frontend
 ### Entra na pasta frontend e rodar
 - $ npm install
@@ -14,3 +15,5 @@ Projeto de estudo com lista de contatos
 - $ php artisan serve
 
 
+# Dsafio dos múltiplos
+Basta rodar node multiplos.js
