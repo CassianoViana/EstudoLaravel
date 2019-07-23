@@ -26,13 +26,16 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        Contact::create([
-            'seller_name' => $request->seller_name,
-            'contact_name' => $request->contact_name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'company' => $request->company,
+        $validatedData = $request->validate([
+            'seller_name' => 'required|max:255',
+            'contact_name' => 'required|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|max:14',
+            'company' => 'max:255',
+            'expiration_date' => 'date',
+            'contact_date' => 'date|before:tomorrow',
         ]);
+        $contact = Contact::create($validatedData);
     }
 
     /**

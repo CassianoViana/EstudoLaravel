@@ -1,0 +1,29 @@
+version: '3'
+services:
+  backend:
+    build: backend
+    image: "backend:1.0"
+    ports:
+    - 9180:8080
+    depends_on:
+    - db
+    command: "php artisan serve --host=0.0.0.0 --port=8000"
+    ports: 
+    - 8000:8000
+  frontend:
+    build: frontend
+    image: "frontend:1.0"
+    ports:
+    - 9181:3000
+    command: "npm run start"
+    depends_on:
+    - backend
+  db:
+    image: "postgres:10"
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: postgres
+      POSTGRES_DB: saller_contacts
+    ports:
+    - 5555:5432
+

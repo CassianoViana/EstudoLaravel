@@ -8,6 +8,13 @@ export default context => {
         variant: "success",
         message: message
       });
+    },
+    error(title, message) {
+      context.store.commit("setToast", {
+        title: title,
+        variant: "danger",
+        message: message
+      });
     }
   };
 

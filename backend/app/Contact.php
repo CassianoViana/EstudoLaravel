@@ -11,6 +11,8 @@ class Contact extends Model
         'contact_name',
         'company',
         'phone',
-        'email',        
+        'email',
+        'contact_date',
+        'expiration_date',
     ];
 }

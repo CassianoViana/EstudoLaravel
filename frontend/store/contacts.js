@@ -53,7 +53,7 @@ export const actions = {
     return this.$axios.$get(`/api/contacts/${id||''}`);
   },
   async loadContact({ commit, dispatch }, id) {
-    let contact = await dispatch("getContactById", id)[0];
+    let contact = await dispatch("getContactById", id);
     if (!contact) {
       contact = {
         seller_name: "",

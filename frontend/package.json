@@ -6,9 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "cross-env BASE_URL=http://localhost:8000 NUXT_HOST=0.0.0.0 NUXT_PORT=3000 SITE_URL=http://localhost.com.br nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
+    "build": "cross-env BASE_URL=http://backend:8000 NUXT_HOST=0.0.0.0 NUXT_PORT=3000 SITE_URL=http://backend.com.br nuxt build",
+    "start": "cross-env BASE_URL=http://backend:8000 NUXT_HOST=0.0.0.0 NUXT_PORT=3000 SITE_URL=http://backend.com.br nuxt start"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.5.4",
